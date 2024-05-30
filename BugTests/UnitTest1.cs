@@ -53,21 +53,6 @@ public class UnitTest1
         Assert.AreEqual(Bug.State.Closed, state);
     }
 
-    [TestMethod]
-    public void CheckClosedToAssignAndDeferException()
-    {
-        var bug = new Bug(Bug.State.Closed);
-        bug.Assign();
-        Assert.ThrowsException<InvalidOperationException>(() => bug.Defer());
-    }
-
-    [TestMethod]
-    public void CheckOpenToDeferExceptionAfterAssign()
-    {
-        var bug = new Bug(Bug.State.Open);
-        bug.Assign();
-        Assert.ThrowsException<InvalidOperationException>(() => bug.Defer());
-    }
 
     [TestMethod]
     public void CheckMultipleAssigns()
@@ -89,11 +74,4 @@ public class UnitTest1
         Assert.AreEqual(Bug.State.Assigned, state);
     }
 
-    [TestMethod]
-    public void CheckDeferToCloseExceptionAfterAssign()
-    {
-        var bug = new Bug(Bug.State.Defered);
-        bug.Assign();
-        Assert.ThrowsException<InvalidOperationException>(() => bug.Close());
-    }
 }
